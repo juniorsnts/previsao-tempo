@@ -1,0 +1,29 @@
+<ion-content class="fundo">
+
+  <div class="clickBranco" (click)="fecharModal()"></div>
+
+  <div padding class="modalSheet">
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <h3 text-center>{{dados.date}} - {{dados.weekday}}</h3>
+      </ion-col>
+    </ion-row>   
+    <ion-row>
+      <ion-col col-12>
+        <h5 text-center class="max">Temperatura Máxima: {{dados.max}}°</h5>
+        <h5 text-center class="min">Temperatura Minima: {{dados.min}}°</h5>
+      </ion-col>
+    </ion-row> 
+    <ion-row>
+      <ion-col col-12>
+        <h6 text-center class="description">{{dados.description}}</h6>
+        <h6 *ngIf="dados.description=='Tempestades'" class="recomenda" text-center>*Melhor tomar cuidado com os raios</h6>
+        <h6 *ngIf="dados.description=='Ensolarado'" class="recomenda" text-center>*Melhor ir com pouca roupa hoje bb</h6>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </div>
+
+</ion-content>

@@ -1,14 +1,35 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-navbar color="primary">
+    <ion-title text-center>
+      Previsão em {{previsao?.results.city_name}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Cidade</ion-label>
+      <ion-input type="text" [(ngModel)]="cidade"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button block (click)="buscarCidade()">Buscar</button>
+
+  <ion-card *ngFor="let item of previsao?.results.forecast">
+    <ion-card-content>
+      <ion-card-title text-center (click)="abreModal(item)">
+        {{item.date}} - {{item.weekday}}
+      </ion-card-title>
+      <p text-center>
+        <span class="max">Máx: {{item.max}}°</span> e <span class="min">Min: {{item.min}}°</span> - <span class="description"><strong>{{item.description}}</strong></span>
+      </p>
+    </ion-card-content>
+  </ion-card>
+  
+  <h6 text-right>Atualizado às {{previsao?.results.time}}</h6>
+  <ion-footer>
+    <ion-toolbar>
+      <span class="max" padding>TEMPERATURA ATUAL:</span><span class="max">{{previsao?.results.temp}}°</span>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
